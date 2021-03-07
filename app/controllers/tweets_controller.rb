@@ -46,13 +46,13 @@ class TweetsController < ApplicationController
    
       # キーワード分割
       keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
-      binding.pry
+     # binding.pry
       # 空のモデルオブジェクト作成（何も入っていない空配列のようなもの）
       @tweets = Tweet.none
 
       # 検索ワードの数だけor検索を行う
       keywords.each do |keyword|
-        binding.pry
+       # binding.pry
         #keyword = keyword.tr('〇一二三四五六七八九', '0123456789').gsub(/(\d+)?十(\d+)?/) { ($1 || 1).to_i * 10 + $2.to_i }
         @tweets = @tweets.or(Tweet.where("text LIKE ?", "%#{keyword}%"))
       end
